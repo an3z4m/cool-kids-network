@@ -1,0 +1,35 @@
+#cool-kids-signup {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#cool-kids-signup input[type="email"] {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#cool-kids-signup button {
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#cool-kids-signup button:hover {
+    background-color: #005a87;
+}
+
+#signup-message {
+    margin-top: 10px;
+    color: red;
+}
