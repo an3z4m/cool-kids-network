@@ -7,8 +7,9 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Prevent direct access to the file.
+    exit; // Prevent direct access.
 }
+
 
 class CoolKidsNetwork {
 
@@ -19,14 +20,7 @@ class CoolKidsNetwork {
         add_action('wp_ajax_signup_user', [$this, 'signup_user']);
     }
 
-    // Register custom roles
-    public function register_roles() {
-        add_role('cool_kid', 'Cool Kid', ['read' => true]);
-        add_role('cooler_kid', 'Cooler Kid', ['read' => true, 'view_others_characters' => true]);
-        add_role('coolest_kid', 'Coolest Kid', ['read' => true, 'view_others_characters' => true, 'view_email_role' => true]);
-    }
-
-    // Render the signup form
+    // Sign-up form shortcode
     public function render_signup_form() {
         ob_start(); ?>
         <form id="cool-kids-signup">
@@ -52,7 +46,7 @@ class CoolKidsNetwork {
         return ob_get_clean();
     }
 
-    // Handle the user signup
+    // Handle user sign-up process
     public function signup_user() {
         $email = sanitize_email($_POST['email']);
         if (!is_email($email)) {
@@ -63,7 +57,7 @@ class CoolKidsNetwork {
             wp_send_json_error(['message' => 'Email already registered.']);
         }
 
-        // Use randomuser.me API to generate character data
+        // Call the randomuser.me API
         $response = wp_remote_get('https://randomuser.me/api/');
         if (is_wp_error($response)) {
             wp_send_json_error(['message' => 'Failed to generate character.']);
@@ -76,14 +70,15 @@ class CoolKidsNetwork {
         $last_name = sanitize_text_field($data['name']['last']);
         $country = sanitize_text_field($data['location']['country']);
 
+        // Create a new user with the email
         $user_id = wp_create_user($email, wp_generate_password(), $email);
         if (is_wp_error($user_id)) {
             wp_send_json_error(['message' => 'User registration failed.']);
         }
 
-        // Set the user's role to Cool Kid
+        // Assign the default role to the new user
         wp_update_user(['ID' => $user_id, 'role' => 'cool_kid']);
-        
+
         // Store additional character data as user meta
         update_user_meta($user_id, 'first_name', $first_name);
         update_user_meta($user_id, 'last_name', $last_name);
