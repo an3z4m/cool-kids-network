@@ -17,4 +17,4 @@ Cool Kids Network is a WordPress plugin that implements a user management system
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/cool-kids-network.git
+   git clone https://github.com/an3z4m/cool-kids-network.git
