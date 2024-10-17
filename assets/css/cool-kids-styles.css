@@ -1,3 +1,5 @@
+/* SIGNUP PAGE */
+
 #cool-kids-signup {
     max-width: 400px;
     margin: 0 auto;
@@ -34,6 +36,7 @@
     color: red;
 }
 
+/* LOGIN PAGE */
 
 #cool-kids-login {
     max-width: 400px;
@@ -74,4 +77,37 @@
 #login-message {
     margin-top: 10px;
     color: red;
+}
+
+
+/* PROFILE PAGE */
+
+#cool-kids-profile {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#cool-kids-profile h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#cool-kids-profile p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#cool-kids-profile a {
+    color: #0073aa;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#cool-kids-profile a:hover {
+    text-decoration: underline;
 }
