@@ -6,6 +6,9 @@ class Cool_Kids_Ajax {
         // Handle AJAX for non-logged-in and logged-in users
         add_action('wp_ajax_nopriv_signup_user', [$this, 'signup_user']);
         add_action('wp_ajax_signup_user', [$this, 'signup_user']);
+
+        add_action('wp_ajax_nopriv_login_user', [$this, 'login_user']);
+        add_action('wp_ajax_login_user', [$this, 'login_user']);
     }
 
     // Handle user sign-up via AJAX
@@ -48,6 +51,25 @@ class Cool_Kids_Ajax {
         update_user_meta($user_id, 'country', $country);
 
         wp_send_json_success(['message' => 'Sign up successful!']);
+    }
+
+
+    // Handle user login via AJAX
+    public function login_user() {
+        check_ajax_referer('cool_kids_login_nonce', 'login_nonce'); // Nonce verification
+
+        $email = sanitize_email($_POST['email']);
+        $user = get_user_by('email', $email);
+
+        if (!$user || !email_exists($email)) {
+            wp_send_json_error(['message' => 'Invalid email address.']);
+        }
+
+        // Log the user in
+        wp_set_current_user($user->ID);
+        wp_set_auth_cookie($user->ID);
+
+        wp_send_json_success(['message' => 'Login successful!']);
     }
 }
 
