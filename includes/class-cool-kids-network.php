@@ -90,7 +90,7 @@ class Cool_Kids_Network {
 
         // Fetch all users and their metadata
         $args = [
-            'role__in' => ['cool_kid', 'cooler_kid', 'coolest_kid', 'administrator'], // Limit to relevant roles
+            'role__in' => ['cool_kid', 'cooler_kid', 'coolest_kid'], // Limit to relevant roles
             'orderby' => 'user_registered',
             'order' => 'ASC',
         ];
