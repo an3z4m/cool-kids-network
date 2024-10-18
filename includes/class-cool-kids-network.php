@@ -22,15 +22,33 @@ class Cool_Kids_Network {
 
     // Add custom roles on activation
     public function add_roles() {
+        // Add 'cool_kid' role
         add_role('cool_kid', 'Cool Kid', [
             'read' => true,
             'edit_posts' => false,
         ]);
+    
+        // Add 'cooler_kid' role
+        add_role('cooler_kid', 'Cooler Kid', [
+            'read' => true,
+            'edit_posts' => false,
+            'view_user_list' => true, // Optional custom capability
+        ]);
+    
+        // Add 'coolest_kid' role
+        add_role('coolest_kid', 'Coolest Kid', [
+            'read' => true,
+            'edit_posts' => false,
+            'view_user_list' => true, // Optional custom capability
+        ]);
     }
+    
 
     // Remove custom roles on deactivation
     public function remove_roles() {
         remove_role('cool_kid');
+        remove_role('cooler_kid');
+        remove_role('coolest_kid');
     }
 
     // Register and enqueue plugin scripts and styles
