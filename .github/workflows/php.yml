@@ -44,6 +44,7 @@ jobs:
 
       - name: Install WordPress test suite
         run: |
+          export CI=true
           bash bin/install-wp-tests.sh wpmedia_db root root 127.0.0.1 latest
 
       - name: Copy plugin to WordPress
