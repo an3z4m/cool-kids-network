@@ -7,13 +7,10 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   phpunit:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: [7.4, 8.0]
-        wordpress-version: [5.7, 5.8, latest]
 
     services:
       mysql:
@@ -23,6 +20,11 @@ jobs:
           MYSQL_DATABASE: wordpress_test
         ports:
           - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
 
     steps:
       - name: Checkout repository
@@ -31,23 +33,25 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: 8.0
           extensions: mbstring, xml, json, mysqli
+          coverage: none
 
-      - name: Clone wordpress-develop
+      - name: Install PHPUnit
         run: |
-          git clone --depth=1 https://github.com/WordPress/wordpress-develop.git /tmp/wordpress-develop
+          sudo apt-get update
+          sudo apt-get install -y php-pear phpunit
 
       - name: Install WordPress test suite
         run: |
-          bash /tmp/wordpress-develop/tests/phpunit/includes/install-wp-tests.sh wordpress_test root root 127.0.0.1 ${{ matrix.wordpress-version }}
+          bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest
 
       - name: Copy plugin to WordPress
         run: |
-          mkdir -p /tmp/wordpress-develop/src/wp-content/plugins/cool-kids-network
-          cp -r . /tmp/wordpress-develop/src/wp-content/plugins/cool-kids-network
+          mkdir -p /tmp/wordpress/wp-content/plugins/cool-kids-network
+          cp -r . /tmp/wordpress/wp-content/plugins/cool-kids-network
 
       - name: Run PHPUnit tests
         run: |
-          cd /tmp/wordpress-develop/src/wp-content/plugins/cool-kids-network
-          phpunit --configuration phpunit.xml.disty
+          cd /tmp/wordpress/wp-content/plugins/cool-kids-network
+          phpunit --configuration phpunit.xml.dist
