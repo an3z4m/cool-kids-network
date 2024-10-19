@@ -52,4 +52,4 @@ jobs:
       - name: Run PHPUnit tests
         run: |
           cd /tmp/wordpress/wp-content/plugins/cool-kids-network
-          phpunit --configuration phpunit.xml.dist
+          vendor/bin/phpunit --configuration phpunit.xml.dist
