@@ -142,20 +142,29 @@ class Cool_Kids_Network
             'Cool Kids User List' => '[cool_kids_user_list]',
         ];
 
-        // Loop through each page and create it if it doesn't already exist
-        foreach ($pages as $title => $shortcode) {
-            // Check if the page exists by title
-            $page = get_page_by_title($title);
-
+        foreach ($pages as $slug => $shortcode) {
+            // Use WP_Query to check if the page exists by slug
+            $query = new WP_Query([
+                'post_type'  => 'page',
+                'name'       => $slug,  // 'name' corresponds to the slug
+                'post_status' => 'publish',
+                'posts_per_page' => 1,
+            ]);
+        
             // If the page doesn't exist, create it
-            if (!$page) {
+            if (!$query->have_posts()) {
                 wp_insert_post([
-                    'post_title' => $title,
+                    'post_name'    => $slug,        // Set the slug explicitly
+                    'post_title'   => ucwords(str_replace('-', ' ', $slug)), // Generate a title based on the slug if needed
                     'post_content' => $shortcode,
-                    'post_status' => 'publish',
-                    'post_type' => 'page',
+                    'post_status'  => 'publish',
+                    'post_type'    => 'page',
                 ]);
             }
+        
+            // Reset post data after WP_Query
+            wp_reset_postdata();
         }
+        
     }
 }
