@@ -1,8 +1,9 @@
 <?php
 
-class Cool_Kids_Network {
-
-    public function __construct() {
+class Cool_Kids_Network
+{
+    public function __construct()
+    {
         // // Add roles and capabilities during plugin activation
         // register_activation_hook(__FILE__, [$this, 'add_roles']);
         // register_activation_hook(__FILE__, [$this, 'create_plugin_pages']);
@@ -23,20 +24,21 @@ class Cool_Kids_Network {
     }
 
     // Add custom roles on activation
-    public function add_roles() {
+    public function add_roles()
+    {
         // Add 'cool_kid' role
         add_role('cool_kid', 'Cool Kid', [
             'read' => true,
             'edit_posts' => false,
         ]);
-    
+
         // Add 'cooler_kid' role
         add_role('cooler_kid', 'Cooler Kid', [
             'read' => true,
             'edit_posts' => false,
             'view_user_list' => true, // Optional custom capability
         ]);
-    
+
         // Add 'coolest_kid' role
         add_role('coolest_kid', 'Coolest Kid', [
             'read' => true,
@@ -44,17 +46,19 @@ class Cool_Kids_Network {
             'view_user_list' => true, // Optional custom capability
         ]);
     }
-    
+
 
     // Remove custom roles on deactivation
-    public function remove_roles() {
+    public function remove_roles()
+    {
         remove_role('cool_kid');
         remove_role('cooler_kid');
         remove_role('coolest_kid');
     }
 
     // Register and enqueue plugin scripts and styles
-    public function enqueue_scripts() {
+    public function enqueue_scripts()
+    {
         wp_enqueue_style('cool-kids-styles', plugin_dir_url(__FILE__) . '../assets/css/cool-kids-styles.css');
         wp_enqueue_script('cool-kids-scripts', plugin_dir_url(__FILE__) . '../assets/js/cool-kids-scripts.js', [], false, true);
 
@@ -65,21 +69,24 @@ class Cool_Kids_Network {
     }
 
     // Render the sign-up form using a template
-    public function render_signup_form() {
+    public function render_signup_form()
+    {
         ob_start();
         include plugin_dir_path(__FILE__) . '../templates/signup-form.php';
         return ob_get_clean();
     }
 
     // Render the login form using a template
-    public function render_login_form() {
+    public function render_login_form()
+    {
         ob_start();
         include plugin_dir_path(__FILE__) . '../templates/login-form.php';
         return ob_get_clean();
     }
 
     // Render the profile page for logged-in users
-    public function render_profile() {
+    public function render_profile()
+    {
         if (!is_user_logged_in()) {
             return '<p>You must be logged in to view your profile.</p>';
         }
@@ -95,16 +102,19 @@ class Cool_Kids_Network {
     }
 
     // Render the user list for specific roles
-    public function render_user_list() {
+    public function render_user_list()
+    {
         if (!is_user_logged_in()) {
             return '<p>You must be logged in to view the user list.</p>';
         }
 
         // Check if the current user has the right role
         $current_user = wp_get_current_user();
-        if (!in_array('administrator', $current_user->roles) && 
+        if (
+            !in_array('administrator', $current_user->roles) &&
             !in_array('coolest_kid', $current_user->roles) &&
-            !in_array('cooler_kid', $current_user->roles)) {
+            !in_array('cooler_kid', $current_user->roles)
+        ) {
             return '<p>You do not have permission to view the user list.</p>';
         }
 
@@ -122,7 +132,8 @@ class Cool_Kids_Network {
     }
 
 
-    public function create_plugin_pages() {
+    public function create_plugin_pages()
+    {
         // Define an array of pages to create
         $pages = [
             'Cool Kids Signup' => '[cool_kids_signup]',
@@ -130,12 +141,12 @@ class Cool_Kids_Network {
             'Cool Kids Profile' => '[cool_kids_profile]',
             'Cool Kids User List' => '[cool_kids_user_list]',
         ];
-    
+
         // Loop through each page and create it if it doesn't already exist
         foreach ($pages as $title => $shortcode) {
             // Check if the page exists by title
             $page = get_page_by_title($title);
-    
+
             // If the page doesn't exist, create it
             if (!$page) {
                 wp_insert_post([
@@ -147,5 +158,4 @@ class Cool_Kids_Network {
             }
         }
     }
-    
 }

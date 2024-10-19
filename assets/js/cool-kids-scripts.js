@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Handle signup form submission
     const signupForm = document.getElementById('cool-kids-signup');
     if (signupForm) {
-        signupForm.addEventListener('submit', function(event) {
+        signupForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
             const email = signupForm.querySelector('input[name="email"]').value;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle login form submission
     const loginForm = document.getElementById('cool-kids-login');
     if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
+        loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
             const email = loginForm.querySelector('input[name="email"]').value;

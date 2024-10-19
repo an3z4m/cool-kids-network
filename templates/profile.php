@@ -16,9 +16,9 @@ $profile_image = get_user_meta($user_id, 'profile_image', true);  // Get profile
 <div id="cool-kids-profile">
     <h2>Your Character Profile</h2>
     
-    <?php if (!empty($profile_image)): ?>
+    <?php if (!empty($profile_image)) : ?>
         <img src="<?php echo esc_url($profile_image); ?>" alt="Profile Image" style="border-radius: 50%; width: 150px; height: 150px;">
-    <?php else: ?>
+    <?php else : ?>
         <img src="<?php echo esc_url(plugins_url('../assets/images/default-profile.jpg', __FILE__)); ?>" alt="Default Profile Image" style="border-radius: 50%; width: 150px; height: 150px;">
     <?php endif; ?>
     

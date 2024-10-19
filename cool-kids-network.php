@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Cool Kids Network
  * Description: A proof of concept for user management and role-based access in WordPress.
