@@ -3,17 +3,19 @@
 class Cool_Kids_Network {
 
     public function __construct() {
-        // Add roles and capabilities during plugin activation
-        register_activation_hook(__FILE__, [$this, 'add_roles']);
+        // // Add roles and capabilities during plugin activation
+        // register_activation_hook(__FILE__, [$this, 'add_roles']);
+        // register_activation_hook(__FILE__, [$this, 'create_plugin_pages']);
 
-        // Remove roles and capabilities during plugin deactivation
-        register_deactivation_hook(__FILE__, [$this, 'remove_roles']);
+        // // Remove roles and capabilities during plugin deactivation
+        // register_deactivation_hook(__FILE__, [$this, 'remove_roles']);
 
         // Register shortcode for sign-up, login and profile
         add_shortcode('cool_kids_signup', [$this, 'render_signup_form']);
         add_shortcode('cool_kids_login', [$this, 'render_login_form']);
         add_shortcode('cool_kids_profile', [$this, 'render_profile']);
         add_shortcode('cool_kids_user_list', [$this, 'render_user_list']);
+
 
 
         // Enqueue scripts and styles
@@ -118,4 +120,32 @@ class Cool_Kids_Network {
         include plugin_dir_path(__FILE__) . '../templates/user-list.php';
         return ob_get_clean();
     }
+
+
+    public function create_plugin_pages() {
+        // Define an array of pages to create
+        $pages = [
+            'Cool Kids Signup' => '[cool_kids_signup]',
+            'Cool Kids Login' => '[cool_kids_login]',
+            'Cool Kids Profile' => '[cool_kids_profile]',
+            'Cool Kids User List' => '[cool_kids_user_list]',
+        ];
+    
+        // Loop through each page and create it if it doesn't already exist
+        foreach ($pages as $title => $shortcode) {
+            // Check if the page exists by title
+            $page = get_page_by_title($title);
+    
+            // If the page doesn't exist, create it
+            if (!$page) {
+                wp_insert_post([
+                    'post_title' => $title,
+                    'post_content' => $shortcode,
+                    'post_status' => 'publish',
+                    'post_type' => 'page',
+                ]);
+            }
+        }
+    }
+    
 }
