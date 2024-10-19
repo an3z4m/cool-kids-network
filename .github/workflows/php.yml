@@ -44,6 +44,11 @@ jobs:
         run: |
           bash bin/install-wp-tests.sh wpmedia_db root root 127.0.0.1 latest
 
+      - name: Copy plugin to WordPress
+        run: |
+          mkdir -p /tmp/wordpress/wp-content/plugins/cool-kids-network
+          cp -r . /tmp/wordpress/wp-content/plugins/cool-kids-network
+
       - name: Run PHPUnit tests
         run: |
           cd /tmp/wordpress/wp-content/plugins/cool-kids-network
