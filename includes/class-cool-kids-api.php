@@ -87,8 +87,12 @@ public function update_user_role(WP_REST_Request $request) {
 
     // If user not found
     if (empty($user)) {
+        error_log('User not found for role update request. Email: ' . $email . ', First Name: ' . $first_name . ', Last Name: ' . $last_name);
         return new WP_Error('user_not_found', 'User not found with the provided information.', ['status' => 404]);
     }
+
+    // Log the role change action
+    error_log('Changing role for user: ' . $user->user_email . ' to ' . $new_role);
 
     // Update the user's role
     $user_id = $user->ID;
