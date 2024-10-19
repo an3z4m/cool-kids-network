@@ -37,20 +37,12 @@ jobs:
           extensions: mbstring, xml, json, mysqli
           coverage: none
 
-      - name: Install PHPUnit
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y php-pear phpunit
+      - name: Install Composer dependencies
+        run: composer install --no-scripts
 
       - name: Install WordPress test suite
         run: |
-          export CI=true
           bash bin/install-wp-tests.sh wpmedia_db root root 127.0.0.1 latest
-
-      - name: Copy plugin to WordPress
-        run: |
-          mkdir -p /tmp/wordpress/wp-content/plugins/cool-kids-network
-          cp -r . /tmp/wordpress/wp-content/plugins/cool-kids-network
 
       - name: Run PHPUnit tests
         run: |

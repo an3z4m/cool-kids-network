@@ -5,6 +5,10 @@
  * @package Cool_Kids_Network
  */
 
+ // Load the Composer autoloader to include PHPUnit Polyfills
+require_once dirname( __FILE__ ) . '/../vendor/autoload.php';
+
+
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $_tests_dir ) {
