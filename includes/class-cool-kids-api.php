@@ -54,7 +54,7 @@ class Cool_Kids_API
     public function check_permissions()
     {
         // Only administrators or maintainers can access this endpoint
-        return current_user_can('administrator');
+        return current_user_can('administrator') || current_user_can('manage_roles_via_api');
     }
 
     public function update_user_role(WP_REST_Request $request)

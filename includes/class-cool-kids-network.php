@@ -45,6 +45,12 @@ class Cool_Kids_Network
             'edit_posts' => false,
             'view_user_list' => true, // Optional custom capability
         ]);
+
+        // custom maintainer role
+        add_role('api_maintainer', 'API Maintainer', [
+            'read' => false,  // No access to WordPress admin pages
+            'manage_roles_via_api' => true,  // Custom capability for managing roles via API
+        ]);
     }
 
 
