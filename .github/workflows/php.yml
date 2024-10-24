@@ -51,7 +51,7 @@ jobs:
 
       - name: Run PHP CodeSniffer
         run: |
-          vendor/bin/phpcbf --standard=WordPress --ignore=vendor/ .
+          vendor/bin/phpcbf --standard=WordPress --extensions=php --ignore=vendor/ .
 
       - name: Run PHPUnit tests
         run: |
