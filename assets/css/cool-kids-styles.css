@@ -90,7 +90,7 @@
 	text-align: center;
 }
 
-.cool-kids-profile h2 {
+.cool-kids-content h2 {
 	font-size: 28px; /* Larger for section headings */
 	margin-bottom: 15px;
 	color: #212121;
@@ -103,26 +103,14 @@
 	margin-bottom: 20px;
 }
 
-.cool-kids-profile p {
+.cool-kids-content p {
 	font-size: 18px; /* Larger for body text */
 	color: #212121;
 	margin-bottom: 10px;
 }
 
-/* Profile Links */
-.cool-kids-profile a {
-	color: #00BCD4;
-	text-decoration: none;
-	font-size: 18px; /* Larger font for links */
-}
-
-.cool-kids-profile a:hover {
-	text-decoration: underline;
-	color: #FF9800;
-}
-
 /* General link styling */
-a {
+.cool-kids-content a {
 	color: #00BCD4; /* Cool blue, consistent with theme */
 	text-decoration: none;
 	font-weight: bold;
@@ -130,7 +118,7 @@ a {
 	transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-a:hover, a:focus {
+.cool-kids-content a:hover, .cool-kids-content a:focus {
 	color: #FF9800; /* Vivid orange on hover */
 	text-decoration: underline; /* Underline on hover for emphasis */
 	outline: none; /* Remove focus outline */

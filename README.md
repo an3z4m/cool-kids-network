@@ -14,6 +14,16 @@ Cool Kids Network is a WordPress plugin that implements a user management system
 - **Custom Role - Network Maintainer**: A new role specifically for safely managing API requests, allowing users to perform role updates without requiring full admin access.
 - **REST API**: Admins or Network Maintainers can assign special roles (Cool Kid, Cooler Kid, Coolest Kid) to users via a REST API endpoint.
 
+## Download Ready-to-Use Versions
+
+The role-based features are integral to the Cool Kids Network plugin, which is designed to work seamlessly with any WordPress theme. For an enhanced user experience, we’ve also created a custom, clean theme that complements the plugin’s functionality.
+
+You can choose to use the plugin with your existing theme, or, for optimal design consistency, you can use our custom theme. Both the plugin and theme are available for download from the **releases** folder:
+
+- [Download Cool Kids Network Plugin](releases/cool-kids-network.zip)
+- [Download Cool Kids Theme](releases/cool-kids-theme.zip)
+
+
 ## Installation
 1. Download the plugin zip file.
 2. Go to your WordPress admin dashboard.
