@@ -1,157 +1,435 @@
-/* SIGNUP PAGE */
-
-#cool-kids-signup {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#cool-kids-signup input[type="email"] {
-    width: 95%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#cool-kids-signup button {
-    padding: 10px 20px;
-    background-color: #0073aa;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#cool-kids-signup button:hover {
-    background-color: #005a87;
-}
-
-#signup-message {
-    margin-top: 10px;
-    color: red;
-}
-
-/* LOGIN PAGE */
-
-#cool-kids-login {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#cool-kids-login input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-#cool-kids-login button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #0073aa;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#cool-kids-login button:hover {
-    background-color: #005a87;
-}
-
-#login-message {
-    margin-top: 10px;
-    color: red;
+@font-face{
+	font-family: 'ABeeZee';
+	src: url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap");
 }
 
 
-/* PROFILE PAGE */
-#cool-kids-profile {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+
+/* General container styling for all plugin content */
+.cool-kids-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 80vh; /* Vertically centers the content */
+	text-align: center;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: 'ABeeZee', 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Arial', sans-serif; /* Kid-friendly font stack */
+	justify-content: flex-start;
 }
 
-#cool-kids-profile h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+/* Form Container Styling for Signup, Login */
+.cool-kids-form {
+	max-width: 400px;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
 }
 
-#cool-kids-profile img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+/* Form Input Styling */
+.cool-kids-form input[type="email"],
+.cool-kids-form input[type="password"],
+.cool-kids-form input[type="text"] {
+	width: 100%;
+	padding: 14px;
+	margin-bottom: 15px;
+	border: 2px solid #00BCD4;
+	border-radius: 8px;
+	color: #212121;
+	font-size: 18px; /* Increased font size for readability */
+	box-sizing: border-box;
 }
 
-#cool-kids-profile p {
-    font-size: 18px;
-    margin-bottom: 10px;
+.cool-kids-form input[type="email"]:focus,
+.cool-kids-form input[type="password"]:focus,
+.cool-kids-form input[type="text"]:focus {
+	outline: none;
+	border-color: #FF9800; /* Highlighted border color on focus */
 }
 
-#cool-kids-profile a {
-    color: #0073aa;
-    text-decoration: none;
-    font-size: 16px;
+/* Button Styling for Forms */
+.cool-kids-form button,
+.cool-kids-form input[type="submit"] {
+	padding: 14px 24px;
+	font-size: 18px; /* Increased size for better readability */
+	background-color: #8BC34A;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.3s;
+	width: 100%;
 }
 
-#cool-kids-profile a:hover {
-    text-decoration: underline;
+.cool-kids-form button:hover,
+.cool-kids-form input[type="submit"]:hover {
+	background-color: #FF9800;
+	transform: scale(1.05);
 }
 
-/* User List */
-#user-list {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
+/* Error Message Styling */
+.cool-kids-message {
+	color: #FF9800;
+	margin-top: 10px;
+	font-size: 16px; /* Larger for better visibility */
 }
 
-#user-list th, #user-list td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+/* Profile Page Styling */
+.cool-kids-profile {
+	max-width: 400px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
 }
 
-#user-list th {
-    background-color: #0073aa;
-    color: white;
+.cool-kids-profile h2 {
+	font-size: 28px; /* Larger for section headings */
+	margin-bottom: 15px;
+	color: #212121;
 }
 
-#user-list tr:nth-child(even) {
-    background-color: #f9f9f9;
+.cool-kids-profile img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin-bottom: 20px;
 }
 
-#user-list tr:hover {
-    background-color: #f1f1f1;
+.cool-kids-profile p {
+	font-size: 18px; /* Larger for body text */
+	color: #212121;
+	margin-bottom: 10px;
 }
 
-#user-list img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+/* Profile Links */
+.cool-kids-profile a {
+	color: #00BCD4;
+	text-decoration: none;
+	font-size: 18px; /* Larger font for links */
 }
 
-#user-list td {
-    vertical-align: middle;
+.cool-kids-profile a:hover {
+	text-decoration: underline;
+	color: #FF9800;
+}
+
+/* General link styling */
+a {
+	color: #00BCD4; /* Cool blue, consistent with theme */
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 18px; /* Larger link text */
+	transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover, a:focus {
+	color: #FF9800; /* Vivid orange on hover */
+	text-decoration: underline; /* Underline on hover for emphasis */
+	outline: none; /* Remove focus outline */
+}
+
+/* Button-style links for call-to-actions */
+.cool-kids-content a.button-link {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: #00BCD4;
+	color: white;
+	border-radius: 8px;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cool-kids-content a.button-link:hover {
+	background-color: #FF9800;
+	transform: scale(1.05);
+}
+
+.cool-kids-content a.button-link:focus {
+	outline: 3px dashed #FF9800;
+	outline-offset: 3px;
+}
+
+/* Table Styling - Kid-Friendly */
+#user-list-content {
+	width: 100%;
+	max-width: 1200px;
+	border-collapse: collapse;
+	font-size: 20px; /* Consistent larger font size */
+	font-weight: 500;
+	color: #333;
+	background-color: #f9f9f9;
+	text-align: left;
+	border-radius: 3px; /* Rounded table for a softer look */
+	overflow: hidden;
+}
+
+#user-list-content th, #user-list-content td {
+	text-align: center;
+	border-bottom: solid 1px #00BCD4;
+}
+
+#user-list-content th {
+	background-color: #00BCD4;
+	color: white;
+	font-weight: bold;
+	font-size: 16px; /* Increased for better header visibility */
+	padding: 10px;
+}
+
+#user-list-content td {
+	vertical-align: middle;
+	text-align: center;
+	color: #212121;
+	font-size: 18px; /* Larger text for table content */
+	padding: 5px;
+}
+
+/* Profile Image Styling */
+#user-list-content img {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+
+/* Alternating row colors for readability */
+#user-list-content tr:nth-child(even) {
+	background-color: #fff5e6;
+}
+
+#user-list-content tr:hover {
+	background-color: #e6f7ff;
+}
+
+/* Improved Focus Styles for Accessibility */
+#user-list-content tr:focus, #user-list-content tr:focus-visible {
+	outline: 3px dashed #FF9800;
+	outline-offset: 2px;
+}
+
+/* Button Actions */
+.cool-kids-content button {
+	background-color: #8BC34A;
+	color: white;
+	border: none;
+	padding: 14px 24px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 18px;
+	transition: background-color 0.3s, transform 0.3s;
+	font-weight: bold;
+}
+
+.cool-kids-content button:hover {
+	background-color: #FF9800;
+	transform: scale(1.05);
+}
+
+/* Responsive Table for Small Screens */
+@media (max-width: 768px) {
+	#user-list-content {
+		font-size: 18px;
+	}
+
+	#user-list-content th, #user-list-content td {
+		padding: 12px;
+	}
+
+	#user-list-content img {
+		width: 50px;
+		height: 50px;
+	}
+
+	#user-list-content, #user-list-content tbody, #user-list-content tr, #user-list-content td {
+		display: block;
+		width: 100%;
+	}
+
+	#user-list-content tr {
+		margin-bottom: 10px;
+	}
+
+	#user-list-content th {
+		display: none;
+	}
+
+	#user-list-content td {
+		text-align: left;
+		padding-left: 50%;
+		position: relative;
+	}
+
+	#user-list-content td:before {
+		content: attr(data-label);
+		position: absolute;
+		left: 0;
+		width: 45%;
+		padding-left: 10px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+
+/* Responsive form elements */
+@media (max-width: 768px) {
+	.cool-kids-form input,
+	.cool-kids-form button {
+		width: 100%;
+	}
+
+	.cool-kids-user-list th,
+	.cool-kids-user-list td {
+		font-size: 16px;
+		padding: 10px;
+	}
+}
+
+/* Tabs Styling */
+.tab-container {
+}
+
+.tabs {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.tab-link {
+	padding: 10px 20px;
+	margin-right: 5px;
+	background-color: #00BCD4;
+	color: white;
+	cursor: pointer;
+	border-radius: 5px 5px 0 0;
+	font-size: 18px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+}
+
+.tab-link.active {
+	background-color: #FF9800; /* Active tab color */
+}
+
+.tab-link:hover {
+	background-color: #ff990099;
+}
+
+/* Tab Content */
+.tab-content {
+	display: none; /* Hidden by default */
+	width: 100%;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 0 0 10px 10px;
+	border: solid 1px #FF9800;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content.active {
+	display: block; /* Show active tab content */
+}
+
+
+/* General Profile Layout */
+.modern-profile {
+	max-width: 1000px;
+	margin: 40px auto;
+	padding: 30px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+}
+
+.modern-profile:hover {
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Grid Layout */
+.profile-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 40px;
+	align-items: center;
+}
+
+/* Profile Image Styling */
+.profile-image img {
+	max-width: 230px;
+	height: auto;
+	object-fit: cover;
+	border-radius: 10px;  /* Slightly rounded corners */
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Details */
+.profile-details {
+	background-color: #f9f9f9;
+	height: 200px;
+	padding: 25px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	/* text-align: left; */
+	transition: all 0.3s ease-in-out;
+}
+
+.profile-details h3 {
+	font-size: 22px;
+	margin-bottom: 15px;
+	color: #333;
+	font-weight: bold;
+}
+
+.profile-details p {
+	font-size: 16px;
+	color: #555;
+	margin-bottom: 10px;
+	line-height: 1.6;
+}
+
+/* Bio Section */
+.bio-section p {
+	font-size: 16px;
+	color: #666;
+	line-height: 1.8;
+	margin-top: 15px;
+}
+
+/* Modern Transitions */
+.profile-details:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+	.profile-grid {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+
+	.profile-image {
+		grid-column: 1;
+	}
+
+	.profile-details h3 {
+		font-size: 20px;
+	}
+
+	.profile-details p {
+		font-size: 14px;
+	}
 }

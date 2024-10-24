@@ -49,6 +49,10 @@ jobs:
           mkdir -p /tmp/wordpress/wp-content/plugins/cool-kids-network
           cp -r . /tmp/wordpress/wp-content/plugins/cool-kids-network
 
+      - name: Run PHP CodeSniffer
+        run: |
+          vendor/bin/phpcs --standard=WordPress --ignore=vendor/ .
+
       - name: Run PHPUnit tests
         run: |
           cd /tmp/wordpress/wp-content/plugins/cool-kids-network

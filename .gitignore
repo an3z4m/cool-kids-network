@@ -1,1 +1,25 @@
+# Ignore Composer dependencies
 /vendor/
+
+# Ignore PHPUnit result cache and test files
+.phpunit.result.cache
+/tests/
+/phpunit.xml.dist
+
+# Ignore PHP_CodeSniffer config file (only needed for development)
+.phpcs.xml.dist
+
+# Git-related files
+/.git/
+/.gitattributes
+/.gitignore
+
+# Ignore Composer lock file (if not needed in production)
+composer.lock
+
+# Ignore development directories and files
+/bin/
+/.circleci/
+
+# Optional: Ignore README if not needed in production
+README.md
