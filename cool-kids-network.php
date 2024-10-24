@@ -4,7 +4,7 @@
  * Description: A proof of concept for user management and role-based access in WordPress.
  * Version: 1.0.1
  * Author: Nabil Kerkacha
- * 
+
  * @package CoolKidsNetwork
  */
 
