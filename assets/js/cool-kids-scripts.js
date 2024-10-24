@@ -46,22 +46,22 @@ document.addEventListener(
 					.then( response => response.json() )
 					.then(
 						result => {
-							document.getElementById( 'signup-message' ).innerText = result.data.message;
-							console.log( result );
-                        if (result.success) {
-                            setTimeout(
-                            () => {
-                                document.getElementById( 'signup-message' ).innerText = '';
-                                switchLoginSignupForm( 'login' );
-                            },
-                            3500
-                            );
-                        }
+                        document.getElementById( 'signup-message' ).innerText = result.data.message;
+                        console.log( result );
+							if (result.success) {
+								setTimeout(
+								() => {
+									document.getElementById( 'signup-message' ).innerText = '';
+									switchLoginSignupForm( 'login' );
+								},
+								3500
+								);
+							}
 						}
 					)
 					.catch(
 						error => {
-                        document.getElementById( 'signup-message' ).innerText = 'Something went wrong. Please try again.';
+							document.getElementById( 'signup-message' ).innerText = 'Something went wrong. Please try again.';
 						}
 					);
 				}
@@ -98,21 +98,21 @@ document.addEventListener(
 					.then( response => response.json() )
 					.then(
 						result => {
-                        document.getElementById( 'login-message' ).innerText = result.data.message;
-                        if (result.success) {
-                            setTimeout(
-                            () => {
-                                document.getElementById( 'login-message' ).innerText = '';
-                                window.location.reload();
-                                },
-                            3500
-                            );
-                        }
+							document.getElementById( 'login-message' ).innerText = result.data.message;
+							if (result.success) {
+								setTimeout(
+								() => {
+									document.getElementById( 'login-message' ).innerText = '';
+									window.location.reload();
+									},
+								3500
+								);
+							}
 						}
 					)
 					.catch(
 						error => {
-                        document.getElementById( 'login-message' ).innerText = 'Something went wrong. Please try again.';
+							document.getElementById( 'login-message' ).innerText = 'Something went wrong. Please try again.';
 						}
 					);
 				}
@@ -130,20 +130,20 @@ document.addEventListener(
 
 		tabs.forEach(
 			tab => {
-            tab.addEventListener(
-					'click',
-					function () {
-						const target = this.getAttribute( 'data-tab' );
+				tab.addEventListener(
+                'click',
+                function () {
+                    const target = this.getAttribute( 'data-tab' );
 
-						// Remove active class from all tabs and contents
-						tabs.forEach( t => t.classList.remove( 'active' ) );
-						contents.forEach( c => c.classList.remove( 'active' ) );
+                    // Remove active class from all tabs and contents
+                    tabs.forEach( t => t.classList.remove( 'active' ) );
+                    contents.forEach( c => c.classList.remove( 'active' ) );
 
-						// Add active class to clicked tab and corresponding content
-						this.classList.add( 'active' );
-						document.getElementById( target ).classList.add( 'active' );
-					}
-				);
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add( 'active' );
+                    document.getElementById( target ).classList.add( 'active' );
+                }
+            );
 			}
 		);
 	}

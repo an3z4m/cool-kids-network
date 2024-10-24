@@ -34,19 +34,27 @@ class Cool_Kids_Network {
 			)
 		);
 
-        // Add 'coolest_kid' role
-        add_role('coolest_kid', 'Coolest Kid', [
-            'read' => true,
-            'edit_posts' => false,
-            'view_user_list' => true, // Optional custom capability
-        ]);
+		// Add 'coolest_kid' role
+		add_role(
+			'coolest_kid',
+			'Coolest Kid',
+			array(
+				'read'           => true,
+				'edit_posts'     => false,
+				'view_user_list' => true, // Optional custom capability
+			)
+		);
 
-        // custom maintainer role
-        add_role('api_maintainer', 'API Maintainer', [
-            'read' => false,  // No access to WordPress admin pages
-            'manage_roles_via_api' => true,  // Custom capability for managing roles via API
-        ]);
-    }
+		// custom maintainer role
+		add_role(
+			'api_maintainer',
+			'API Maintainer',
+			array(
+				'read'                 => false,  // No access to WordPress admin pages
+				'manage_roles_via_api' => true,  // Custom capability for managing roles via API
+			)
+		);
+	}
 
 
 	// Remove custom roles on deactivation

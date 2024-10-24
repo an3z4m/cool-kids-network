@@ -19,45 +19,43 @@ class Cool_Kids_API {
 		);
 	}
 
-    public function get_endpoint_args()
-    {
-        return [
-            'email' => [
-                'required' => false,
-                'validate_callback' => function ($param) {
-                    return is_email($param);
-                },
-                'description' => 'The email of the user to update.',
-            ],
-            'first_name' => [
-                'required' => false,
-                'validate_callback' => function ($param) {
-                    return !empty($param);
-                },
-                'description' => 'The first name of the user.',
-            ],
-            'last_name' => [
-                'required' => false,
-                'validate_callback' => function ($param) {
-                    return !empty($param);
-                },
-                'description' => 'The last name of the user.',
-            ],
-            'role' => [
-                'required' => true,
-                'validate_callback' => function ($param) {
-                    return in_array($param, ['cool_kid', 'cooler_kid', 'coolest_kid']);
-                },
-                'description' => 'The new role to assign to the user.',
-            ],
-        ];
-    }
+	public function get_endpoint_args() {
+		return array(
+			'email'      => array(
+				'required'          => false,
+				'validate_callback' => function ( $param ) {
+					return is_email( $param );
+				},
+				'description'       => 'The email of the user to update.',
+			),
+			'first_name' => array(
+				'required'          => false,
+				'validate_callback' => function ( $param ) {
+					return ! empty( $param );
+				},
+				'description'       => 'The first name of the user.',
+			),
+			'last_name'  => array(
+				'required'          => false,
+				'validate_callback' => function ( $param ) {
+					return ! empty( $param );
+				},
+				'description'       => 'The last name of the user.',
+			),
+			'role'       => array(
+				'required'          => true,
+				'validate_callback' => function ( $param ) {
+					return in_array( $param, array( 'cool_kid', 'cooler_kid', 'coolest_kid' ) );
+				},
+				'description'       => 'The new role to assign to the user.',
+			),
+		);
+	}
 
-    public function check_permissions()
-    {
-        // Only administrators or maintainers can access this endpoint
-        return current_user_can('administrator') || current_user_can('manage_roles_via_api');
-    }
+	public function check_permissions() {
+		// Only administrators or maintainers can access this endpoint
+		return current_user_can( 'administrator' ) || current_user_can( 'manage_roles_via_api' );
+	}
 
 	public function update_user_role( WP_REST_Request $request ) {
 		$email      = sanitize_email( $request->get_param( 'email' ) );
